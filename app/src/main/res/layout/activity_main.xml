@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#252525"
+    android:keepScreenOn="true"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/loop1"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+
+        android:layout_marginTop="60dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintEnd_toStartOf="@+id/loop2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/loop_deactive"
+        android:contentDescription="@string/loop1" />
+
+    <ImageView
+        android:id="@+id/loop3"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toTopOf="@+id/loop5"
+        app:layout_constraintEnd_toStartOf="@+id/loop4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loop1"
+        app:srcCompat="@drawable/loop_deactive"
+        android:contentDescription="@string/loop3" />
+
+    <ImageView
+        android:id="@+id/loop5"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+
+        android:layout_marginBottom="150dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/loop6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/loop_deactive"
+        android:contentDescription="@string/loop5" />
+
+    <ImageView
+        android:id="@+id/loop2"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+
+        android:layout_marginTop="60dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/loop1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/loop_deactive"
+        android:contentDescription="@string/loop2" />
+
+    <ImageView
+        android:id="@+id/loop4"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toTopOf="@+id/loop6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/loop3"
+        app:layout_constraintTop_toBottomOf="@+id/loop2"
+        app:srcCompat="@drawable/loop_deactive"
+        android:contentDescription="@string/loop4" />
+
+    <ImageView
+        android:id="@+id/loop6"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+
+        android:layout_marginBottom="150dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/loop5"
+        app:srcCompat="@drawable/loop_deactive"
+        android:contentDescription="@string/loop6" />
+</android.support.constraint.ConstraintLayout>

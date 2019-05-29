@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Loop Box</string>
+    <string name="loop1">Loop One</string>
+    <string name="loop2">Loop Two</string>
+    <string name="loop3">Loop Three</string>
+    <string name="loop4">Loop Four</string>
+    <string name="loop5">Loop Five</string>
+    <string name="loop6">Loop Six</string>
+</resources>
