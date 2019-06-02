@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\Android\\LoopBox\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
+            "outputFile": "C:\\Programming\\Android\\LoopBox\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-2\\files-2.1\\637727bc90399563a6b15df83c938e65\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\Rithik Jain\\.gradle\\caches\\transforms-2\\files-2.1\\384189f7dbcbc8a4b7b789c0fd7de21d\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",

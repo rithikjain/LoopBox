@@ -3,9 +3,13 @@ package com.rithikjain.loopbox;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.PorterDuff;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
+import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -21,6 +25,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.io.File;
@@ -30,8 +35,10 @@ public class MainActivity extends AppCompatActivity {
 
     // Defining the variables that will help in performing different functions with the same button
     private int[] counter = new int[6];
-
     private boolean[] isRecorded = new boolean[6];
+
+    // Defining a variable loopDuration for all loops;
+    private int[] loopDuration = new int[6];
 
     // Defining variable to take care of multiple recording not occurring at once
     private boolean isRecording = false;
@@ -49,17 +56,30 @@ public class MainActivity extends AppCompatActivity {
     // Permission related variables
     private int MIC_PERMISSION_CODE = 1;
 
+    // Defining variable to take care for deleting loop at right time
+    private boolean[] loopExists = new boolean[6];
+
+    // Defining variable array to assign all progress bars from the layout
+    private ProgressBar[] mProgressBar = new ProgressBar[6];
+
+    // Defining Handler for handling the Progress bar
+    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Initialising all counters to 0
-        for(int i = 0; i<6; i++) counter[i] = 0;
+        // Initialising all counters to 0 and progressStatus to 0
+        for(int i = 0; i<6; i++){
+            counter[i] = 0;
+        }
 
-        // Initialising all isRecorded booleans to false
-        for(int j = 0; j<6; j++) isRecorded[j] = false;
+        // Initialising all isRecorded and loopExists booleans to false
+        for(int j = 0; j<6; j++){
+            isRecorded[j] = false;
+            loopExists[j] = false;
+        }
 
         // Creating a folder where temp loops can be stored
         File file = new File(Environment.getExternalStorageDirectory() + "/Loop Box/Loops");
@@ -80,7 +100,15 @@ public class MainActivity extends AppCompatActivity {
         mLoop[4] = findViewById(R.id.loop5);
         mLoop[5] = findViewById(R.id.loop6);
 
-        // OnClick Functions on the loop1
+        // Assigning all the ProgressBars to the respective ProgressBars in the layout
+        mProgressBar[0] = findViewById(R.id.progress1);
+        mProgressBar[1] = findViewById(R.id.progress2);
+        mProgressBar[2] = findViewById(R.id.progress3);
+        mProgressBar[3] = findViewById(R.id.progress4);
+        mProgressBar[4] = findViewById(R.id.progress5);
+        mProgressBar[5] = findViewById(R.id.progress6);
+
+        // OnClick Functions on the loops
         /*  The single button will perform different functions such as Recording, Playing and Pausing.
             The logic is that once the button has been pressed it will check if recording has been done or not,
             and if it hasn't been done then it will record, otherwise it will ignore the Record function
@@ -259,17 +287,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void deleteLoop(int x){
-        mMediaPlayer[x].stop();
-        mMediaPlayer[x].release();
-        mMediaPlayer[x] = null;
-        isRecorded[x] = false;
-        counter[x] = 0;
+    private void deleteLoop(int n){
+        if(loopExists[n]) {
+            mMediaPlayer[n].stop();
+            mMediaPlayer[n].release();
+            mMediaPlayer[n] = null;
+            isRecorded[n] = false;
+            counter[n] = 0;
 
-        // Changing loop image to deactivated image
-        mLoop[x].setImageResource(R.drawable.loop_deactive);
+            // Changing loop image to deactivated image
+            mLoop[n].setImageResource(R.drawable.loop_deactive);
 
-        Toast.makeText(getApplicationContext(), "Loop deleted!", Toast.LENGTH_SHORT).show();
+            // Setting status of loop exists to false
+            loopExists[n] = false;
+
+            // Setting the progress of the progress bar to 0
+            mProgressBar[n].setProgress(0);
+
+            Toast.makeText(getApplicationContext(), "Loop deleted!", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -315,6 +351,12 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
         }
+
+        // Set status of loopExists to true
+        loopExists[n] = true;
+
+        // Getting the length of the loop
+        loopDuration[n] = getLoopLength(n);
     }
 
     private void playAudio(int n){
@@ -328,6 +370,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Changing loop image to playing image
         mLoop[n].setImageResource(R.drawable.loop_playing);
+
+        // Starting the progress bar
+        startProgressBar(n);
     }
 
     private void pauseAudio(int n){
@@ -337,6 +382,34 @@ public class MainActivity extends AppCompatActivity {
 
         // Changing loop image to deactivated image
         mLoop[n].setImageResource(R.drawable.loop_deactive);
+
+        // Changing the progress bar level to 0
+        mProgressBar[n].setProgress(0);
+    }
+
+    // Making a function to return the duration of the respective loops
+    private int getLoopLength(int n){
+        Uri uri = Uri.parse(mFileName[n]);
+        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+        mmr.setDataSource(getApplicationContext(), uri);
+        String durationStr = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+        return Integer.parseInt(durationStr);
+    }
+
+    // Making a function to sync the progress bar with the loop
+    private void startProgressBar(final int n){
+        mProgressBar[n].setMax(loopDuration[n]);
+
+        MainActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(mMediaPlayer[n] != null){
+                    int mCurrentPosition = mMediaPlayer[n].getCurrentPosition();
+                    mProgressBar[n].setProgress(mCurrentPosition);
+                }
+                handler.postDelayed(this, 50);
+            }
+        });
     }
 
 }

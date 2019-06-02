@@ -646,6 +646,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable rounded_corners
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
@@ -745,6 +746,12 @@ id packed
 id parent
 id parentPanel
 id percent
+id progress1
+id progress2
+id progress3
+id progress4
+id progress5
+id progress6
 id progress_circular
 id progress_horizontal
 id radio

@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\Android\\LoopBox\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rCA\\values-en-rCA.xml",
+            "outputFile": "C:\\Programming\\Android\\LoopBox\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rCA\\values-en-rCA.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-2\\files-2.1\\c657d729ddad46fa4f9a9d70c11fad96\\res\\values-en-rCA\\values-en-rCA.xml",
+                    "source": "C:\\Users\\Rithik Jain\\.gradle\\caches\\transforms-2\\files-2.1\\7ab7edf80fc867e55d11228d72b23bb5\\res\\values-en-rCA\\values-en-rCA.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Admin\\.gradle\\caches\\transforms-2\\files-2.1\\637727bc90399563a6b15df83c938e65\\res\\values-en-rCA\\values-en-rCA.xml",
+                    "source": "C:\\Users\\Rithik Jain\\.gradle\\caches\\transforms-2\\files-2.1\\384189f7dbcbc8a4b7b789c0fd7de21d\\res\\values-en-rCA\\values-en-rCA.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
