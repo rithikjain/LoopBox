@@ -6,4 +6,6 @@
     <string name="loop4">Loop Four</string>
     <string name="loop5">Loop Five</string>
     <string name="loop6">Loop Six</string>
+    <string name="placeholder_description">Description</string>
+    <string name="loop_sync">Sync Loops</string>
 </resources>

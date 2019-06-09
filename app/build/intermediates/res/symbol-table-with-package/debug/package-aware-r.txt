@@ -628,7 +628,6 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
-drawable gradient_background
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable loop_deactive
@@ -683,6 +682,7 @@ id barrier
 id beginning
 id blocking
 id bottom
+id bottom_bar
 id buttonPanel
 id center
 id center_horizontal
@@ -788,6 +788,7 @@ id standard
 id start
 id submenuarrow
 id submit_area
+id sync_switch
 id tabMode
 id tag_transition_group
 id tag_unhandled_key_event_manager
@@ -900,6 +901,8 @@ string loop3
 string loop4
 string loop5
 string loop6
+string loop_sync
+string placeholder_description
 string search_menu_title
 string status_bar_notification_info_overflow
 style AlertDialog_AppCompat
@@ -1090,6 +1093,7 @@ style RtlOverlay_Widget_AppCompat_Search_DropDown_Text
 style RtlOverlay_Widget_AppCompat_SearchView_MagIcon
 style RtlUnderlay_Widget_AppCompat_ActionButton
 style RtlUnderlay_Widget_AppCompat_ActionButton_Overflow
+style SwitchTheme
 style TextAppearance_AppCompat
 style TextAppearance_AppCompat_Body1
 style TextAppearance_AppCompat_Body2
